@@ -1,0 +1,41 @@
+@keyframes swim-rtl {
+    0%   { left: 100%; }
+    100% { left: -1em; }
+}
+
+.water {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0.07;
+    z-index: calc(1 - var(--layer) * 2);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+body, .water {
+    background: #012;
+}
+
+.fish {
+
+    font-size: calc(512px / var(--layer));
+    z-index: calc(0 - var(--layer) * 2);
+    display: inline-block;
+    position: fixed;
+    right: 100%;
+
+    animation-name: swim-rtl;
+    animation-timing-function: linear;
+    animation-duration: calc(3s * var(--layer) / 2);
+    filter: hue-rotate(calc(360deg * var(--color)));
+
+}
+
