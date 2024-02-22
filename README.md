@@ -8,3 +8,6 @@ license by Twitter.
 
 All other components of this site are licensed under the MIT license by
 [myself](https://github.com/mike-jumper).
+
+Per the contents of the `CNAME` file, a copy of this site is publicly reachable
+at: https://jumper.dev/
