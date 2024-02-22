@@ -2,7 +2,6 @@ var addFish = function addFish() {
 
     var fish = document.createElement('div');
     fish.className = 'fish';
-    fish.textContent = '\u{1F41F}';
     fish.style.setProperty('--layer', Math.floor(Math.random() * 20) + 1);
     fish.style.setProperty('--color', Math.random());
     fish.style.top = Math.random() * 100 + '%';

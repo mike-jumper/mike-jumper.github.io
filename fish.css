@@ -3,6 +3,12 @@
     100% { left: -1em; }
 }
 
+@keyframes wag-tail {
+    0%   { transform: rotateY(-60deg); }
+    50%  { transform: rotateY(60deg);  }
+    100% { transform: rotateY(-60deg); }
+}
+
 .water {
     position: fixed;
     top: 0;
@@ -37,5 +43,40 @@ body, .water {
     animation-duration: calc(3s * var(--layer) / 2);
     filter: hue-rotate(calc(360deg * var(--color)));
 
+    width: 1em;
+    height: 1em;
+
 }
 
+.fish:before, .fish:after {
+
+    background: url('fish.svg') center/1em no-repeat;
+    position: absolute;
+
+    display: block;
+    width: 1em;
+    height: 1em;
+    content: ' ';
+    overflow: hidden;
+
+}
+
+.fish:before {
+    left: 0;
+    width: 0.75em;
+    background-position: left center;
+}
+
+.fish:after {
+    right: 0;
+    width: 0.25em;
+    background-position: right center;
+}
+
+.fish:after {
+    transform-origin: 0 center;
+    animation-name: wag-tail;
+    animation-timing-function: linear;
+    animation-duration: 0.6s;
+    animation-iteration-count: infinite;
+}
