@@ -20,11 +20,28 @@
  * IN THE SOFTWARE.
  */
 
-var addFish = function addFish() {
+/**
+ * The maximum number of layers that fish may be stacked within. A greater
+ * quantity of layers leads to greater variance in fish depth.
+ */
+const MAX_FISH_DEPTH = 20;
 
-    var fish = document.createElement('div');
+/**
+ * The maximum number of milliseconds to wait before adding a new fish.
+ */
+const MAX_FISH_INTERVAL = 5000;
+
+/**
+ * Adds a new fish to the set of fish currently displayed. The new fish will be
+ * automatically assigned a random location, color, and depth. Once the fish
+ * has swum all the way across the screen, it will be automatically removed
+ * from the DOM.
+ */
+const addFish = function addFish() {
+
+    let fish = document.createElement('div');
     fish.className = 'fish';
-    fish.style.setProperty('--layer', Math.floor(Math.random() * 20) + 1);
+    fish.style.setProperty('--layer', Math.floor(Math.random() * MAX_FISH_DEPTH) + 1);
     fish.style.setProperty('--color', Math.random());
     fish.style.top = Math.random() * 100 + '%';
 
@@ -35,19 +52,34 @@ var addFish = function addFish() {
 
 };
 
-var scheduleFish = function scheduleFish() {
+/**
+ * Adds a new fish after a ~5 second wait, and then continues to add new fish
+ * every ~5 seconds. The delay between adding new fish is randomized.
+ *
+ * NOTE: There is no explicit upper bound on the number of fish, however there
+ * is an implicit upper bound given that there is an upper bound for how long
+ * each fish will remain (they will eventually reach the other side and be
+ * removed, and there is a maximum length of time that this can take) as well
+ * as a statistical upper bound on the number of times addFish() will be
+ * invoked over the course of that time (the function is called at random
+ * intervals). If the JavaScript engine decides to give us poorly-distributed
+ * fish intervals, then that upper bound vanishes.
+ */
+const scheduleFish = function scheduleFish() {
     window.setTimeout(function populateFish() {
         window.requestAnimationFrame(addFish);
         scheduleFish();
-    }, Math.random() * 5000);
+    }, Math.random() * MAX_FISH_INTERVAL);
 };
 
-for (var i = 0; i < 20; i++) {
-    var water = document.createElement('div');
+// Add layers of water corresponding to the maximum fish depth
+for (var i = 0; i < MAX_FISH_DEPTH; i++) {
+    let water = document.createElement('div');
     water.className = 'water';
     water.style.setProperty('--layer', i);
     document.body.appendChild(water);
 }
 
+// Start adding fish
 scheduleFish();
 

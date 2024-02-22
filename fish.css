@@ -20,16 +20,26 @@
  * IN THE SOFTWARE.
  */
 
+/* Swimming animation, simply moving fish from off-screen right to off-screen
+ * left */
+
 @keyframes swim-rtl {
     0%   { left: 100%; }
     100% { left: -1em; }
 }
+
+/* Tail-wagging animation, rotating the tail back-and-forth in 3D around the Y
+ * (vertical) axis */
 
 @keyframes wag-tail {
     0%   { transform: rotateY(-60deg); }
     50%  { transform: rotateY(60deg);  }
     100% { transform: rotateY(-60deg); }
 }
+
+/* Layers of transparent "water", providing a blue fog that effectively
+ * increases in intensity as fish are further into the distance (thanks to
+ * multiple layers adding together) */
 
 .water {
     position: fixed;
@@ -52,6 +62,8 @@ body, .water {
     background: #012;
 }
 
+/* Moving fish container, scaled based on distance (depth) from the viewer */
+
 .fish {
 
     font-size: calc(512px / var(--layer));
@@ -69,6 +81,9 @@ body, .water {
     height: 1em;
 
 }
+
+/* Split fish into wagging tail and stationary head - the dividing line between
+ * the head and the tail in the fish SVG is at roughly 75% from the left */
 
 .fish:before, .fish:after {
 
