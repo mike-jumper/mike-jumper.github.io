@@ -50,7 +50,7 @@ body, .water {
 
 .fish:before, .fish:after {
 
-    background: url('fish.svg') center/1em no-repeat;
+    background: url('twemoji/fish.svg') center/1em no-repeat;
     position: absolute;
 
     display: block;
