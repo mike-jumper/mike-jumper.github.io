@@ -32,9 +32,9 @@
  * (vertical) axis */
 
 @keyframes wag-tail {
-    0%   { transform: rotateY(-60deg); }
-    50%  { transform: rotateY(60deg);  }
-    100% { transform: rotateY(-60deg); }
+    0%   { transform: perspective(calc(6in + var(--layer) * 6in)) rotateY(-60deg); }
+    50%  { transform: perspective(calc(6in + var(--layer) * 6in)) rotateY(60deg);  }
+    100% { transform: perspective(calc(6in + var(--layer) * 6in)) rotateY(-60deg); }
 }
 
 /* Layers of transparent "water", providing a blue fog that effectively
